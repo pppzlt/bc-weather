@@ -17,24 +17,79 @@
 
 <body>
     <header>
-        <nav class="navbar justify-content-center py-0" ><span class="navbar-text text-white fs-3 fw-bold">Weather Dashboard</span>
+        <nav class="navbar justify-content-center py-0"><span class="navbar-text text-white fs-3 fw-bold">Weather
+                Dashboard</span>
         </nav>
     </header>
     <main class="container mx-0 mt-3">
-        <!-- sidebar -->
-        <div class="col-3">
-            <form action="." class="d-grid gap-2">
-                <label for="searchinput" class="fw-semibold form-label ">Search for a City:</label>
-                <input type="text" name="searchinput" placeholder="New York" class=" form-control">
-                <input type="submit" value="Search" class="btn btn-info text-white">
-            </form>
-            <hr>
-            <div id="history"></div>
-        </div>
-        <!-- content -->
-        <div class="col-9">
-            <div class="current"></div>
-            <div class="fivedays"></div>
+        <div class="row">
+            <!-- sidebar -->
+            <div class="col-3">
+                <form action="." class="d-grid gap-2">
+                    <label for="searchinput" class="fw-semibold form-label ">Search for a City:</label>
+                    <input type="text" name="searchinput" placeholder="New York" class=" form-control">
+                    <input type="submit" value="Search" class="btn btn-info text-white">
+                </form>
+                <hr>
+                <div id="history" class="d-grid gap-2">
+                    <!-- replace with js generated -->
+                    <div class="btn btn-secondary disabled">Atlanta</div>
+                    <div class="btn btn-secondary disabled">New York</div>
+                </div>
+            </div>
+            <!-- content -->
+            <div class="col-9">
+                <div id="current" class="border border-dark p-2">
+                    <h4 class="fw-bold" ><span id="city">Atlanta</span> (date <span id="date"></span>)</h4>
+                    <p>Temp: <span id="c_temp"></span>°F</p>
+                    <p>Wind: <span id="c_wind"></span> MPH</p>
+                    <p>Humidity: <span id="c_humidity"></span> %</p>
+                </div>
+                <div class="fivedays">
+                    <h5 class="my-3 fw-bold">5-Day Forcast:</h5>
+                    <div class="container">
+                        <div class="row justify-content-between">
+                            <div class="col-2 px-1 pe-5 bg-secondary text-white">
+                                <p class="fw-bold">9/25/2022</p>
+                                <p>img</p>
+                                <p>Temp: <span>63.55</span>°F</p>
+                                <p>Wind: <span></span> MPH</p>
+                                <p>Humidity: <span></span> %</p>
+                            </div>
+                            <div class="col-2 px-1 pe-5 bg-secondary text-white">
+                                <p class="fw-bold">9/25/2022</p>
+                                <p>img</p>
+                                <p>Temp: <span>63.55</span>°F</p>
+                                <p>Wind: <span></span> MPH</p>
+                                <p>Humidity: <span></span> %</p>
+                            </div>
+                            <div class="col-2 px-1 pe-5 bg-secondary text-white">
+                                <p class="fw-bold">9/25/2022</p>
+                                <p>img</p>
+                                <p>Temp: <span>63.55</span>°F</p>
+                                <p>Wind: <span></span> MPH</p>
+                                <p>Humidity: <span></span> %</p>
+                            </div>
+                            <div class="col-2 px-1 pe-5 bg-secondary text-white">
+                                <p class="fw-bold">9/25/2022</p>
+                                <p>img</p>
+                                <p>Temp: <span>63.55</span>°F</p>
+                                <p>Wind: <span></span> MPH</p>
+                                <p>Humidity: <span></span> %</p>
+                            </div>
+                            <div class="col-2 px-1 pe-5 bg-secondary text-white">
+                                <p class="fw-bold">9/25/2022</p>
+                                <p>img</p>
+                                <p>Temp: <span>63.55</span>°F</p>
+                                <p>Wind: <span></span> MPH</p>
+                                <p>Humidity: <span></span> %</p>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <script src="./assets/script.js"></script>
