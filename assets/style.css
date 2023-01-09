@@ -4,6 +4,6 @@ html{
 body{
     margin:0;
 }
-header{
-    background-color: aqua;
+header nav {
+    background: linear-gradient(to right, #3399ff , #0033cc);
 }
