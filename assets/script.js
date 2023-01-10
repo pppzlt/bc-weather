@@ -43,8 +43,13 @@ $(":submit").on("click", (e) => {
     // if (city_name === '') {
     //   return;
     // }
-    localStorage.setItem(city_name, null);
-    appendHistory();
+    /* create a validation function */
+    if (!validate(city_name)) {
+      return;
+    } else {
+      localStorage.setItem(city_name, null);
+      appendHistory();
+    }
   } else {
     city_name = e.target.value;
   }
@@ -59,6 +64,15 @@ $(":submit").on("click", (e) => {
   /* set a helper function to pop up all storage values to box */
 });
 
+/* Helper function validation */
+function validate(x) {
+  if (!x) {
+    alert("Please enter a city!");
+    return false;
+  } else {
+    return true;
+  }
+}
 /* Helper function that convert unix UTC time to formatted time based on timezone */
 function convert(input, timezone) {
   let date = dayjs.unix(input);
@@ -174,5 +188,8 @@ function appendHistory() {
 cityEl.text(city_name);
 getAPI_c();
 getAPI_f();
+//have to apendhistory()
+
+
 
 /* need to fix one more thing that is that I am targeting the date with 12:00 but still would result in same date */
