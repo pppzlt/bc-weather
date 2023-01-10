@@ -9,6 +9,7 @@ const f_five_dateEl = $("p[id='f-date']");
 const f_five_tempEl = $("span[id='f-temp']");
 const f_five_windEl = $("span[id='f-wind']");
 const f_five_humEl = $("span[id='f-humidity']");
+const f_five_img = $("img[id='f-img']");
 
 let city_name = "Cleveland"; //default city
 let c_temp;
@@ -16,9 +17,12 @@ let c_wind;
 let c_humidity;
 let c_date;
 let c_timezone;
+let c_img;
+let c_img_url;
 let f_date;
 let f_timezone;
 let f_time_5days = [];
+let f_img_url;
 
 /* based on city name set the url. created two helper functions */
 function c_api_f(city_name) {
@@ -34,6 +38,9 @@ $(":submit").on("click", (e) => {
   e.preventDefault();
   if (e.target.value === "Search") {
     city_name = $(":text").val();
+    // if (city_name === '') {
+    //   return;
+    // }
     localStorage.setItem(city_name, null);
     appendHistory();
   } else {
@@ -71,6 +78,7 @@ function getAPI_f() {
   fetch(f_api)
     .then((result) => result.json()) //result.json()
     .then((data) => {
+      console.log(data);
       /*       get next five days data only if their time is 12:00
       return in f_time_5days */
       f_time_5days = []; //otherwise push will add up.
@@ -93,6 +101,10 @@ function getAPI_f() {
       f_five_humEl.each(function (index) {
         $(this).text(f_time_5days[index].main.humidity);
       });
+      f_five_img.each(function (index) {
+        f_img_url = "http://openweathermap.org/img/wn/" + f_time_5days[index].weather[0].icon + "@2x.png";
+        $(this).attr({'src': f_img_url, "height": "45em"})
+      })
     })
     .catch((err) => {
       console.log(err);
@@ -105,6 +117,7 @@ function getAPI_c() {
     .then((result) => result.json())
     .then((data) => {
       // console.log(data);
+      console.log(data);
       c_temp = data.main.temp;
       c_humidity = data.main.humidity;
       c_wind = data.wind.speed;
@@ -115,6 +128,10 @@ function getAPI_c() {
       c_temp_span.text(c_temp);
       c_hum_span.text(c_humidity);
       c_wind_span.text(c_wind);
+      /* retreive img from url */
+      c_img = data.weather[0].icon
+      c_img_url = 'http://openweathermap.org/img/wn/' + c_img + '@2x.png';
+      $('#c_img').attr({ 'src': c_img_url, 'height': '45em' });
     })
     .catch((err) => {
       console.log(err);
