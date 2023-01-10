@@ -9,6 +9,8 @@ const f_five_dateEl = $("p[id='f-date']");
 const f_five_tempEl = $("span[id='f-temp']");
 const f_five_windEl = $("span[id='f-wind']");
 const f_five_humEl = $("span[id='f-humidity']");
+/* now all the images might be shuffling between day and night, bc the API returns data based on UTC,
+ I believe, not local time */
 const f_five_img = $("img[id='f-img']");
 
 let city_name = "Cleveland"; //default city
@@ -102,9 +104,12 @@ function getAPI_f() {
         $(this).text(f_time_5days[index].main.humidity);
       });
       f_five_img.each(function (index) {
-        f_img_url = "http://openweathermap.org/img/wn/" + f_time_5days[index].weather[0].icon + "@2x.png";
-        $(this).attr({'src': f_img_url, "height": "45em"})
-      })
+        f_img_url =
+          "http://openweathermap.org/img/wn/" +
+          f_time_5days[index].weather[0].icon +
+          "@2x.png";
+        $(this).attr({ src: f_img_url, height: "45em" });
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -129,9 +134,9 @@ function getAPI_c() {
       c_hum_span.text(c_humidity);
       c_wind_span.text(c_wind);
       /* retreive img from url */
-      c_img = data.weather[0].icon
-      c_img_url = 'http://openweathermap.org/img/wn/' + c_img + '@2x.png';
-      $('#c_img').attr({ 'src': c_img_url, 'height': '45em' });
+      c_img = data.weather[0].icon;
+      c_img_url = "http://openweathermap.org/img/wn/" + c_img + "@2x.png";
+      $("#c_img").attr({ src: c_img_url, height: "45em" });
     })
     .catch((err) => {
       console.log(err);
