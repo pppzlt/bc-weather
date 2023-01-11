@@ -58,6 +58,9 @@ function validate(x) {
   if (!x) {
     alert("Please enter a city!");
     return false;
+  } else if (!x.match(/^[A-Za-z]+$/)) {
+    alert("letter please");
+    return false;
   } else {
     return true;
   }
@@ -81,6 +84,9 @@ function get12(data) {
 //need one more thing to add a weather img dynamically
 function getAPI_f() {
   fetch(f_api)
+    .then((response) => {
+      console.log(response.status);
+    })
     .then((result) => result.json()) //result.json()
     .then((data) => {
       console.log(data);
@@ -122,6 +128,9 @@ function getAPI_f() {
 //need one more thing to add a weather img dynamically
 function getAPI_c() {
   fetch(c_api)
+    .then((response) => {
+      console.log(response.status);
+    })
     .then((result) => result.json())
     .then((data) => {
       // console.log(data);
@@ -147,12 +156,12 @@ function getAPI_c() {
 }
 
 function combineAPI(city) {
-    c_api = c_api_f(city);
-    f_api = f_api_f(city);
-    cityEl.text(city);
-    /* chagne fetch to a function */
-    getAPI_c();
-    getAPI_f();
+  c_api = c_api_f(city);
+  f_api = f_api_f(city);
+  cityEl.text(city);
+  /* chagne fetch to a function */
+  getAPI_c();
+  getAPI_f();
 }
 /* set a helper function to pop up all storage values to box */
 function appendHistory() {
@@ -170,7 +179,23 @@ function appendHistory() {
       combineAPI(city_name);
     });
   }
+  /* add a clear button if history is not empty */
+  if ($("#history").children().length !== 0) {
+    let btn_clear = document.createElement("input");
+    btn_clear.setAttribute("type", "button");
+    btn_clear.id = "clear";
+    btn_clear.className = "btn btn-danger";
+    btn_clear.value = "Clear";
+    $("#history").append(btn_clear);
+
+    document.querySelector("#clear").addEventListener("click", () => {
+      localStorage.clear();
+      $("#history").empty();
+      appendHistory();
+    });
+  }
 }
+/* Created a new clear button */
 
 //set a default page view
 cityEl.text(city_name);
