@@ -38,31 +38,20 @@ let f_api = f_api_f(city_name);
 
 $(":submit").on("click", (e) => {
   e.preventDefault();
-  if (e.target.value === "Search") {
-    city_name = $(":text").val();
-    // if (city_name === '') {
-    //   return;
-    // }
-    /* create a validation function */
-    if (!validate(city_name)) {
-      return;
-    } else {
-      localStorage.setItem(city_name, null);
-      appendHistory();
-    }
+  city_name = $(":text").val();
+  /* create a validation function */
+  if (!validate(city_name)) {
+    return;
   } else {
-    city_name = e.target.value;
+    /* set local storage */
+    localStorage.setItem(city_name, null);
+    appendHistory();
   }
-  c_api = c_api_f(city_name);
-  f_api = f_api_f(city_name);
-  cityEl.text(city_name);
-
-  /* chagne fetch to a function */
-  getAPI_c();
-  getAPI_f();
-  /* set local storage */
-  /* set a helper function to pop up all storage values to box */
+  //wrap all api call to one function
+  combineAPI(city_name);
 });
+
+/* set a helper function to pop up all storage values to box */
 
 /* Helper function validation */
 function validate(x) {
@@ -156,6 +145,15 @@ function getAPI_c() {
       console.log(err);
     });
 }
+
+function combineAPI(city) {
+    c_api = c_api_f(city);
+    f_api = f_api_f(city);
+    cityEl.text(city);
+    /* chagne fetch to a function */
+    getAPI_c();
+    getAPI_f();
+}
 /* set a helper function to pop up all storage values to box */
 function appendHistory() {
   let keys = Object.keys(localStorage);
@@ -163,23 +161,13 @@ function appendHistory() {
   for (let i = 0; i < keys.length; i++) {
     let btnEl = document.createElement("input");
     btnEl.className = "btn btn-secondary";
-    btnEl.setAttribute("type", "submit");
+    btnEl.setAttribute("type", "button");
     btnEl.setAttribute("value", keys[i]);
     $("#history").append(btnEl);
-    $(":submit").on("click", (e) => {
-      e.preventDefault();
-
+    $(":button").on("click", (e) => {
       city_name = e.target.value;
-
-      c_api = c_api_f(city_name);
-      f_api = f_api_f(city_name);
-      cityEl.text(city_name);
-
-      /* chagne fetch to a function */
-      getAPI_c();
-      getAPI_f();
-      /* set local storage */
-      /* set a helper function to pop up all storage values to box */
+      //wrap all api call to one function
+      combineAPI(city_name);
     });
   }
 }
@@ -189,7 +177,5 @@ cityEl.text(city_name);
 getAPI_c();
 getAPI_f();
 //have to apendhistory()
-
-
 
 /* need to fix one more thing that is that I am targeting the date with 12:00 but still would result in same date */
