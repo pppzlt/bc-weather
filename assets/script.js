@@ -81,7 +81,6 @@ function get12(data) {
   }
 }
 /* put all the fetch inside of a function for resusing */
-//need one more thing to add a weather img dynamically
 function getAPI_f() {
   fetch(f_api)
     .then((result) => result.json()) //result.json()
@@ -122,7 +121,6 @@ function getAPI_f() {
     });
 }
 /* put all the fetch inside of a function for resusing */
-//need one more thing to add a weather img dynamically
 function getAPI_c() {
   fetch(c_api)
     .then((result) => result.json())
@@ -189,12 +187,10 @@ function appendHistory() {
     });
   }
 }
-/* Created a new clear button */
 
 //set a default page view
 cityEl.text(city_name);
 getAPI_c();
 getAPI_f();
-//have to apendhistory()
 appendHistory();
 /* need to fix one more thing that is that I am targeting the date with 12:00 but still would result in same date */
