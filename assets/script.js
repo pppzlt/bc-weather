@@ -177,5 +177,5 @@ cityEl.text(city_name);
 getAPI_c();
 getAPI_f();
 //have to apendhistory()
-
+appendHistory();
 /* need to fix one more thing that is that I am targeting the date with 12:00 but still would result in same date */
