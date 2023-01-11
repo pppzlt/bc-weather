@@ -84,9 +84,6 @@ function get12(data) {
 //need one more thing to add a weather img dynamically
 function getAPI_f() {
   fetch(f_api)
-    .then((response) => {
-      console.log(response.status);
-    })
     .then((result) => result.json()) //result.json()
     .then((data) => {
       console.log(data);
@@ -128,9 +125,6 @@ function getAPI_f() {
 //need one more thing to add a weather img dynamically
 function getAPI_c() {
   fetch(c_api)
-    .then((response) => {
-      console.log(response.status);
-    })
     .then((result) => result.json())
     .then((data) => {
       // console.log(data);
