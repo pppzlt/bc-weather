@@ -58,7 +58,7 @@ function validate(x) {
   if (!x) {
     alert("Please enter a city!");
     return false;
-  } else if (!x.match(/^[A-Za-z]+$/)) {
+  } else if (!x.match(/^[A-Za-z]+ *[A-Za-z]+$/)) {
     alert("letter please");
     return false;
   } else {
@@ -72,13 +72,26 @@ function convert(input, timezone) {
   // let date = new Date((input + timezone) * 1000);
   // return date.toLocaleDateString("en-US", { timeZone: "UTC" });
 }
+function hour(input, timezone) {
+  let date = dayjs.unix(input);
+  return date.utcOffset(timezone / 3600).format("H");
+}
 /* Helper function: get next 5 days data only if their time equals 12:00:00 */
 function get12(data) {
-  for (let i = 0; i < 40; i++) {
-    if (data.list[i].dt_txt.substring(11) === "12:00:00") {
-      f_time_5days.push(data.list[i]);
+  let counter;
+  while (!c_date) {
+    continue;
+  }
+  for (let j = 0; j < 40; j++) {
+    if (convert(data.list[j].dt, data.city.timezone) > c_date) {
+      counter = j;
+      break;
     }
   }
+  for (let i = counter; i < 40; i = i + 8) {
+    f_time_5days.push(data.list[i]);
+  }
+  console.log(f_time_5days.length);
 }
 /* put all the fetch inside of a function for resusing */
 function getAPI_f() {
