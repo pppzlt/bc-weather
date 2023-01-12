@@ -91,14 +91,12 @@ function get12(data) {
   for (let i = counter; i < 40; i = i + 8) {
     f_time_5days.push(data.list[i]);
   }
-  console.log(f_time_5days.length);
 }
 /* put all the fetch inside of a function for resusing */
 function getAPI_f() {
   fetch(f_api)
     .then((result) => result.json()) //result.json()
     .then((data) => {
-      console.log(data);
       /*       get next five days data only if their time is 12:00
       return in f_time_5days */
       f_time_5days = []; //otherwise push will add up.
@@ -138,8 +136,6 @@ function getAPI_c() {
   fetch(c_api)
     .then((result) => result.json())
     .then((data) => {
-      // console.log(data);
-      console.log(data);
       c_temp = data.main.temp;
       c_humidity = data.main.humidity;
       c_wind = data.wind.speed;
