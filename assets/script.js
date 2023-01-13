@@ -95,7 +95,13 @@ function get12(data) {
 /* put all the fetch inside of a function for resusing */
 function getAPI_f() {
   fetch(f_api)
-    .then((result) => result.json()) //result.json()
+    .then(function (result) {
+      if (!result.ok) {
+        throw new Error("Invalid city");
+      } else {
+        return result.json();
+      } //result.json()
+    })
     .then((data) => {
       /*       get next five days data only if their time is 12:00
       return in f_time_5days */
@@ -128,13 +134,19 @@ function getAPI_f() {
       });
     })
     .catch((err) => {
-      console.log(err);
+      console.log(err.message);
     });
 }
 /* put all the fetch inside of a function for resusing */
 function getAPI_c() {
   fetch(c_api)
-    .then((result) => result.json())
+    .then((result) => {
+      if (!result.ok) {
+        throw new Error("Invalid city");
+      } else {
+        return result.json();
+      }
+    }) //result.json()
     .then((data) => {
       c_temp = data.main.temp;
       c_humidity = data.main.humidity;
@@ -152,7 +164,7 @@ function getAPI_c() {
       $("#c_img").attr({ src: c_img_url, height: "45em" });
     })
     .catch((err) => {
-      console.log(err);
+      console.log(err.message);
     });
 }
 
