@@ -56,10 +56,10 @@ $(":submit").on("click", (e) => {
 /* Helper function validation */
 function validate(x) {
   if (!x) {
-    alert("Please enter a city!");
+    alert("Please enter a letter!");
     return false;
   } else if (!x.match(/^[A-Za-z]+ *[A-Za-z]+$/)) {
-    alert("letter please");
+    alert("Letters only");
     return false;
   } else {
     return true;
