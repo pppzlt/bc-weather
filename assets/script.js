@@ -58,7 +58,7 @@ function validate(x) {
   if (!x) {
     alert("Please enter a letter!");
     return false;
-  } else if (!x.match(/^[A-Za-z]+ *[A-Za-z]+$/)) {
+  } else if (!x.match(/^([A-Za-z]+ *)+$/)) {
     alert("Letters only");
     return false;
   } else {
