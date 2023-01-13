@@ -51,8 +51,6 @@ $(":submit").on("click", (e) => {
   combineAPI(city_name);
 });
 
-/* set a helper function to pop up all storage values to box */
-
 /* Helper function validation */
 function validate(x) {
   if (!x) {
@@ -72,10 +70,10 @@ function convert(input, timezone) {
   // let date = new Date((input + timezone) * 1000);
   // return date.toLocaleDateString("en-US", { timeZone: "UTC" });
 }
-function hour(input, timezone) {
-  let date = dayjs.unix(input);
-  return date.utcOffset(timezone / 3600).format("H");
-}
+// function hour(input, timezone) {
+//   let date = dayjs.unix(input);
+//   return date.utcOffset(timezone / 3600).format("H");
+// }
 /* Helper function: get next 5 days data only if their time equals 12:00:00 */
 function get12(data) {
   let counter;
@@ -214,4 +212,3 @@ cityEl.text(city_name);
 getAPI_c();
 getAPI_f();
 appendHistory();
-/* need to fix one more thing that is that I am targeting the date with 12:00 but still would result in same date */
